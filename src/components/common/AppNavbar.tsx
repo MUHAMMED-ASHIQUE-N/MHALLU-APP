@@ -1,38 +1,58 @@
-import React from 'react'
-import HomeSvg from '../../assets/icons/home-2-svgrepo-com.svg'
-import PaySvg from '../../assets/icons/paypal-140-svgrepo-com.svg'
-import UserSvg from '../../assets/icons/user-svgrepo-com.svg'
-import SettingSvg from '../../assets/icons/settings-svgrepo-com.svg'
-function AppNavbar() {
-  return (
-    <div> <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-sm bg-white border-t border-gray-200">
-        <div className="flex justify-around py-3">
-          <div className="flex flex-col items-center">
-            <div className="  rounded-full p-2">
-              <img src={HomeSvg} alt="Home" className="w-10 h-10 text-white" />
-            </div>
-          </div>
-          <div className="flex flex-col items-center py-2">
-            {/* <DollarSign className="w-6 h-6 text-gray-400" /> */}
-            <div className="rounded-full p-2">
-              <img src={PaySvg} alt="Payment" className="w-7 h-7 text-white" />
-            </div>
-          </div>
-          <div className="flex flex-col items-center py-1">
-            {/* <User className="w-6 h-6 text-gray-400" /> */}
-            <div className="rounded-full p-2">
-              <img src={UserSvg} alt="User" className="w-8 h-8 text-white" />
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            {/* <Settings className="w-6 h-6 text-gray-400" /> */}
-            <div className="rounded-full p-2.5">
-              <img src={SettingSvg} alt="Settings" className="w-9 h-9 text-white" />
-            </div>
-          </div>
-        </div>
-      </div></div>
-  )
-}
+import { FC } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import HomeSvg from "../../assets/icons/home-2-svgrepo-com.svg";
+import HomeActiveSvg from "../../assets/icons/home-Icon_active.svg";
+import PaySvg from "../../assets/icons/paypal-140-svgrepo-com.svg";
+import UserSvg from "../../assets/icons/user-svgrepo-com.svg";
+import SettingSvg from "../../assets/icons/settings-svgrepo-com.svg";
+import { NavIcon } from "./NavIcon";
 
-export default AppNavbar
+export const AppNavbar: FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const navItems = [
+    {
+      icon: location.pathname === "/home" ? HomeActiveSvg : HomeSvg,
+      alt: "Home",
+      size: "w-10 h-10",
+      path: "/home",
+    },
+    {
+      icon: PaySvg,
+      alt: "Payment",
+      size: "w-7 h-7",
+      path: "/payment",
+    },
+    {
+      icon: UserSvg,
+      alt: "User",
+      size: "w-8 h-8",
+      path: "/profile",
+    },
+    {
+      icon: SettingSvg,
+      alt: "Settings",
+      size: "w-9 h-9",
+      path: "/settings",
+    },
+  ];
+
+  return (
+    <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-sm bg-gray-100 border-t border-gray-300">
+      <div className="flex justify-around items-center py-3">
+        {navItems.map((item) => (
+          <button
+            key={item.alt}
+            type="button"
+            className="focus:outline-none"
+            onClick={() => navigate(item.path)}
+            aria-current={location.pathname === item.path ? "page" : undefined}
+          >
+            <NavIcon icon={item.icon} alt={item.alt} size={item.size} />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
