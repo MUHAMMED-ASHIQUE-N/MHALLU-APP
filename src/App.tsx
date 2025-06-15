@@ -1,12 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import MonthlyPayment from "./Pages/Payment/MonthlyPayment";
-import QrCodePayment from "./Pages/Payment/QrCodePayment";
+import MonthlyPayment from "./Pages/user/Payment/MonthlyPayment";
+import QrCodePayment from "./Pages/user/Payment/QrCodePayment";
+import UpiPayment from "./Pages/user/Payment/UpiPayment";
+import MyCertificates from "./Pages/user/Certificates/MyCertificates";
+import FamilyInformation from "./Pages/user/Profile/FamilyInformation";
+import FamilyMemberDetails from "./Pages/user/Profile/FamilyMemberDetails";
+import Settings from "./Pages/user/Settings";
 
 // Lazy load components
 const Login = lazy(() => import("./Pages/Login"));
-const Home = lazy(() => import("./Pages/Home"));
-const PaymentHome = lazy(() => import("./Pages/Payment/PaymentHome"));
+const Home = lazy(() => import("./Pages/user/UserHome"));
+const PaymentHome = lazy(() => import("./Pages/user/Payment/PaymentHome"));
 
 function App() {
   return (
@@ -22,6 +27,11 @@ function App() {
           <Route path="/payment" element={<PaymentHome />} />
           <Route path="/monthly-payment" element={<MonthlyPayment />} />
           <Route path="/qr-code-payment" element={<QrCodePayment />} />
+          <Route path="/upi-payment" element={<UpiPayment />} />
+          <Route path="/my-certificates" element={<MyCertificates />} />
+          <Route path="/family-information" element={<FamilyInformation />} />
+          <Route path="/family-member" element={<FamilyMemberDetails />} />
+          <Route path="/settings" element={<Settings />} />
           {/* Add more routes here as needed */}
         </Routes>
       </Suspense>
