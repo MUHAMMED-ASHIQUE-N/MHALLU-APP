@@ -33,7 +33,7 @@ const navItems: NavItem[] = [
     name: "User Management",
     subItems: [
       { name: "Head of Families", path: "/users" },
-      { name: "All Users", path: "/users" },
+      { name: "All Users", path: "/all-users" },
     ],
   },
   {

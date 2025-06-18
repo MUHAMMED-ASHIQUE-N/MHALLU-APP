@@ -5,6 +5,12 @@ import AppLayout from "./layout/AppLayout";
 import './index.css';
 import Dashboard from "./Pages/AdminPages/AdminHome";
 import UsersPage from "./Pages/AdminPages/HeadofFamilies";
+import RequestsPages from "./Pages/AdminPages/RequestPage";
+import NotificationPage from "./Pages/AdminPages/NotificationPages";
+import PaymentDashboard from "./Pages/AdminPages/PaymentDashboard";
+import Paymenttable from "./Pages/AdminPages/Paymenttable";
+import ComplaintsManagement from "./Pages/AdminPages/ComplaintsManagement";
+import AllUsersPage from "./Pages/AdminPages/AllUsers";
 
 
 
@@ -38,7 +44,12 @@ function App() {
 <Route element={<AppLayout />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="/users" element={<UsersPage />} />
-            {/* <Route path="/requests" element={<RequestsPages />} /> */}
+            <Route path="/all-users" element={<AllUsersPage />} />
+            <Route path="/requests" element={<RequestsPages />} />
+            <Route path="/notifications" element={<NotificationPage />} />
+            <Route path="/payments" element={<PaymentDashboard />} />
+            <Route path="/payment-table" element={<Paymenttable />} />
+            <Route path="/complaints" element={<ComplaintsManagement />} />
             </Route>
           </Routes>
         </Suspense>

@@ -1,11 +1,11 @@
 import React from "react";
-import UserTableRow from "./UserTableRow";
+import AllUserTableRow from "./AllUserTableRow";
 
 const users = [
  {
-    name: "Kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
     bloodGroup: "B+",
     aadhar: "1234 5678 9123",
     pan: "ABCDE1234F",
@@ -13,9 +13,9 @@ const users = [
     payment: "₹25,000",
     address: "Malappuram, Kerala",
   },{
-    name: "Kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
     bloodGroup: "B+",
     aadhar: "1234 5678 9123",
     pan: "ABCDE1234F",
@@ -23,9 +23,9 @@ const users = [
     payment: "₹25,000",
     address: "Malappuram, Kerala",
   },{
-    name: "Kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
     bloodGroup: "B+",
     aadhar: "1234 5678 9123",
     pan: "ABCDE1234F",
@@ -33,9 +33,9 @@ const users = [
     payment: "₹25,000",
     address: "Malappuram, Kerala",
   },{
-    name: "Kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
     bloodGroup: "B+",
     aadhar: "1234 5678 9123",
     pan: "ABCDE1234F",
@@ -43,9 +43,9 @@ const users = [
     payment: "₹25,000",
     address: "Malappuram, Kerala",
   },{
-    name: "Kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
     bloodGroup: "B+",
     aadhar: "1234 5678 9123",
     pan: "ABCDE1234F",
@@ -53,9 +53,9 @@ const users = [
     payment: "₹25,000",
     address: "Malappuram, Kerala",
   },{
-    name: "Kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
     bloodGroup: "B+",
     aadhar: "1234 5678 9123",
     pan: "ABCDE1234F",
@@ -64,54 +64,54 @@ const users = [
     address: "Malappuram, Kerala",
   },
   {
-    name: "kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
   },
   {
-    name: "kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
   },
    {
-    name: "kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
   },
   {
-    name: "kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
   },
   {
-    name: "kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
   },
   {
-    name: "kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
   },
    {
-    name: "kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
   },
   {
-    name: "kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
   },
   {
-    name: "kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
   },
   {
-    name: "kadhar",
+    name: "Ummar",
     phone: "+91 0987654321",
-    email: "kadhar@gmail.com",
+    email: "Ummar@gmail.com",
   },
 ];
 
@@ -128,7 +128,7 @@ const UserTable: React.FC = () => (
       </thead>
       <tbody>
         {users.map((user, idx) => (
-          <UserTableRow key={idx} {...user} />
+          <AllUserTableRow key={idx} {...user} />
         ))}
       </tbody>
     </table>
