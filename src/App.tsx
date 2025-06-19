@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 // import { ThemeProvider } from "./context/ThemeContext";  // <-- import your ThemeProvider
-import AppLayout from "./layout/AppLayout";
+import AppLayout from "./layout/admin/AppLayout"
 import './index.css';
 import Dashboard from "./Pages/AdminPages/AdminHome";
 import UsersPage from "./Pages/AdminPages/HeadofFamilies";

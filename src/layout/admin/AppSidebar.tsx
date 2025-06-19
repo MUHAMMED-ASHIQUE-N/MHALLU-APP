@@ -12,8 +12,8 @@ import {
   PlugInIcon,
   TableIcon,
   UserCircleIcon,
-} from "../assets/icons";
-import { useSidebar } from "../context/SidebarContext";
+} from "../../assets/icons";
+import { useSidebar } from "../../context/admin/SidebarContext";
 
 type NavItem = {
   name: string;
@@ -32,8 +32,9 @@ const navItems: NavItem[] = [
     icon: <UserCircleIcon />,
     name: "User Management",
     subItems: [
+       { name: "All Users", path: "/all-users" },
       { name: "Head of Families", path: "/users" },
-      { name: "All Users", path: "/all-users" },
+ 
     ],
   },
   {
