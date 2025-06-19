@@ -1,16 +1,17 @@
 import { FC } from "react";
-import  LargeScreenUi  from "../components/common/LargeScreenUi";
-import  useIsSmallScreen  from "../hooks/useIsSmallScreen";
-import { Header } from "../components/common/Header";
-import  {AppNavbar}  from "../components/common/AppNavbar";
-import CardSvg from "../assets/icons/card-svgrepo-com.svg";
-import MessSvg from "../assets/icons/kitchen-cooker-utensils-svgrepo-com.svg";
-import NOCSvg from "../assets/icons/memo-svgrepo-com.svg";
-import ComplaintsSvg from "../assets/icons/comment-2-svgrepo-com.svg";
-import { ServiceCard } from "../components/common/ServiceCard";
-export const Home: FC = () => {
+import  LargeScreenUi  from "../../components/common/LargeScreenUi";
+import  useIsSmallScreen  from "../../hooks/useIsSmallScreen";
+import { Header } from "../../Layout/user/Header";
+import  {AppNavbar}  from "../../Layout/user/AppNavbar";
+import CardSvg from "../../assets/icons/card-svgrepo-com.svg";
+import MessSvg from "../../assets/icons/kitchen-cooker-utensils-svgrepo-com.svg";
+import NOCSvg from "../../assets/icons/memo-svgrepo-com.svg";
+import ComplaintsSvg from "../../assets/icons/comment-2-svgrepo-com.svg";
+import { ServiceCard } from "../../components/common/ServiceCard";
+import { useNavigate } from "react-router-dom";
+export const UserHome: FC = () => {
   const isSmallScreen = useIsSmallScreen();
-
+  const navigate = useNavigate();
   if (isSmallScreen) {
     return <LargeScreenUi />;
   }
@@ -31,6 +32,7 @@ export const Home: FC = () => {
       <div className="px-5 py-5 ">
         <div className="grid grid-cols-2 gap-6">
           <ServiceCard
+          onClick={() => navigate("/payment")}
             icon={CardSvg}
             labelLines={["Monthly", "Payment"]}
           />
@@ -39,6 +41,7 @@ export const Home: FC = () => {
             labelLines={["MESS", "Payment"]}
           />
           <ServiceCard
+          onClick={() => navigate("/my-certificates")}
             icon={NOCSvg}
             labelLines={["NOC", "Request"]}
           />
@@ -54,4 +57,4 @@ export const Home: FC = () => {
   );
 };
 
-export default Home;
+export default UserHome;

@@ -5,7 +5,7 @@ import HomeActiveSvg from "../../assets/icons/home-Icon_active.svg";
 import PaySvg from "../../assets/icons/paypal-140-svgrepo-com.svg";
 import UserSvg from "../../assets/icons/user-svgrepo-com.svg";
 import SettingSvg from "../../assets/icons/settings-svgrepo-com.svg";
-import { NavIcon } from "./NavIcon";
+import { NavIcon } from "../../components/common/NavIcon";
 
 export const AppNavbar: FC = () => {
   const location = useLocation();
@@ -16,7 +16,7 @@ export const AppNavbar: FC = () => {
       icon: location.pathname === "/home" ? HomeActiveSvg : HomeSvg,
       alt: "Home",
       size: "w-10 h-10",
-      path: "/home",
+      path: "/",
     },
     {
       icon: PaySvg,
@@ -28,7 +28,7 @@ export const AppNavbar: FC = () => {
       icon: UserSvg,
       alt: "User",
       size: "w-8 h-8",
-      path: "/profile",
+      path: "/family-information",
     },
     {
       icon: SettingSvg,
@@ -39,7 +39,7 @@ export const AppNavbar: FC = () => {
   ];
 
   return (
-    <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-sm bg-gray-100 border-t border-gray-300">
+    <div className="fixed bottom-0  w-full  bg-gray-100 border-t border-gray-300">
       <div className="flex justify-around items-center py-3">
         {navItems.map((item) => (
           <button

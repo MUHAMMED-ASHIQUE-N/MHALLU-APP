@@ -1,8 +1,9 @@
 import { FC } from "react";
-import { Header } from "../../components/common/Header";
-import { AppNavbar } from "../../components/common/AppNavbar";
-import CardSvg from "../../assets/icons/card-svgrepo-com.svg";
+import { Header } from "../../../Layout/user/Header";
+import { AppNavbar } from "../../../Layout/user/AppNavbar";
+import CardSvg from "../../../assets/icons/card-svgrepo-com.svg";
 import { useNavigate } from "react-router-dom";
+import MessSvg from "../../../assets/icons/plate-knife-fork-icon.svg";
 
 interface PaymentCardProps {
   icon: string;
@@ -46,7 +47,7 @@ export const PaymentHome: FC = () => {
           description="Regular monthly dues"
         />
         <PaymentCard
-          icon={CardSvg}
+          icon={MessSvg}
           alt="Mess Payment"
           title="Mess Payment"
           description="Meal Plan Payment"

@@ -1,23 +1,10 @@
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 
 // You can substitute this with your actual QR SVG path or data URI
-import QrImage from "../../assets/icons/QR_Code_Example.svg";
+import QrImage from "../../../assets/icons/QR_Code_Example.svg";
+import HeaderBar from "../../../Layout/user/HeaderBar";
 
-const BackButton: FC = () => {
-  const navigate = useNavigate();
-  return (
-    <button
-      onClick={() => navigate(-1)}
-      aria-label="Go back"
-      className="flex items-center justify-center z-99999 w-2 h- rounded-full bg-amber-600 py-1 px-2 "
-    >
-      <svg width={24} height={24} fill="none" viewBox="0 0 24 24">
-        <path d="M15 18l-6-6 6-6" stroke="#166a5c" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    </button>
-  );
-};
+
 
 const AmountCard: FC = () => (
   <div className="w-full rounded-xl shadow-md bg-gradient-to-br from-[#0f766e] to-[#059669] px-6  py-12 mb-7 flex flex-col items-center text-white">
@@ -30,11 +17,7 @@ const AmountCard: FC = () => (
 const QrCodePayment: FC = () => (
   <div className="relative min-h-screen bg-gray-100 pb-20">
     {/* Header */}
-    <div className="bg-primary px-4 py-4 flex items-center gap-3">
-      <BackButton />
-      <h2 className="text-white text-lg font-bold flex-1 text-center -ml-8">Qr Code Payment</h2>
-      <span className="w-9 h-9" />
-    </div>
+    <HeaderBar title="Qr Code Payment" />
 
     <main className="px-4 pt-6 max-w-sm mx-auto flex flex-col items-center">
       <AmountCard />
