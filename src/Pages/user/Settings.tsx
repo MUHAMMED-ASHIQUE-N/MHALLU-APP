@@ -36,12 +36,9 @@ const Settings: FC = () => {
   };
 
   return (
-    <div className="min-h-dvh bg-gray-100 dark:bg-gray-900 pb-16">
+    <div className=" bg-gray-100 dark:bg-gray-900 pb-16">
       {/* Header */}
-      <div className="bg-teal-700 px-4 py-4 ">
-        <h2 className="text-white text-lg font-bold flex-1 text-center">Settings</h2>
-        <span className="w-9 h-9" />
-      </div>
+        <h2 className="text-slate-900 text-xl font-bold flex-1 text-center py-4">Settings</h2>
 
       <main className="px-4 pt-6 max-w-sm mx-auto">
         {/* Theme toggle */}

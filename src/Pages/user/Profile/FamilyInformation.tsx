@@ -68,13 +68,11 @@ const FamilyMemberCard: FC<FamilyMember> = ({ name, age, gender, relation, onCli
 const FamilyInformation: FC = () => {
     const navigate = useNavigate();
     return(
-  <div className="min-h-dvh bg-gray-100 pb-20 relative">
+  <div className=" bg-gray-100 pb-20 relative">
     {/* Header */}
-    <div className="bg-teal-700 px-4 py-5 text-center">
-      <h2 className="text-white text-2xl font-extrabold">Family Information</h2>
-    </div>
+      <h2 className="text-slate-900 text-center py-4 text-2xl font-extrabold">Family Information</h2>
 
-    <main className="px-4 pt-5 max-w-md mx-auto">
+    <main className="px-4  max-w-md mx-auto">
       {/* Family Photo */}
       <div className="w-full rounded-2xl overflow-hidden shadow mb-4">
         <img

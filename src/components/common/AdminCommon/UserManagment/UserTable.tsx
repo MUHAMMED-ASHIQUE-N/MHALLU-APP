@@ -2,35 +2,66 @@ import React from "react";
 import UserTableRow from "./UserTableRow";
 
 const users = [
-  {
-    name: "kadhar",
+ {
+    name: "Kadhar",
     phone: "+91 0987654321",
     email: "kadhar@gmail.com",
-  },
-  {
-    name: "kadhar",
+    bloodGroup: "B+",
+    aadhar: "1234 5678 9123",
+    pan: "ABCDE1234F",
+    joinDate: "2024-05-20",
+    payment: "₹25,000",
+    address: "Malappuram, Kerala",
+  },{
+    name: "Kadhar",
     phone: "+91 0987654321",
     email: "kadhar@gmail.com",
-  },
-  {
-    name: "kadhar",
+    bloodGroup: "B+",
+    aadhar: "1234 5678 9123",
+    pan: "ABCDE1234F",
+    joinDate: "2024-05-20",
+    payment: "₹25,000",
+    address: "Malappuram, Kerala",
+  },{
+    name: "Kadhar",
     phone: "+91 0987654321",
     email: "kadhar@gmail.com",
-  },
-  {
-    name: "kadhar",
+    bloodGroup: "B+",
+    aadhar: "1234 5678 9123",
+    pan: "ABCDE1234F",
+    joinDate: "2024-05-20",
+    payment: "₹25,000",
+    address: "Malappuram, Kerala",
+  },{
+    name: "Kadhar",
     phone: "+91 0987654321",
     email: "kadhar@gmail.com",
-  },
-   {
-    name: "kadhar",
+    bloodGroup: "B+",
+    aadhar: "1234 5678 9123",
+    pan: "ABCDE1234F",
+    joinDate: "2024-05-20",
+    payment: "₹25,000",
+    address: "Malappuram, Kerala",
+  },{
+    name: "Kadhar",
     phone: "+91 0987654321",
     email: "kadhar@gmail.com",
-  },
-  {
-    name: "kadhar",
+    bloodGroup: "B+",
+    aadhar: "1234 5678 9123",
+    pan: "ABCDE1234F",
+    joinDate: "2024-05-20",
+    payment: "₹25,000",
+    address: "Malappuram, Kerala",
+  },{
+    name: "Kadhar",
     phone: "+91 0987654321",
     email: "kadhar@gmail.com",
+    bloodGroup: "B+",
+    aadhar: "1234 5678 9123",
+    pan: "ABCDE1234F",
+    joinDate: "2024-05-20",
+    payment: "₹25,000",
+    address: "Malappuram, Kerala",
   },
   {
     name: "kadhar",

@@ -13,7 +13,7 @@ interface UserTableRowProps {
   address: string;
 }
 
-const UserTableRow: React.FC<UserTableRowProps> = ({
+const AllUserTableRow: React.FC<UserTableRowProps> = ({
   name,
   phone,
   email,
@@ -138,4 +138,4 @@ const UserTableRow: React.FC<UserTableRowProps> = ({
   );
 };
 
-export default UserTableRow;
+export default AllUserTableRow;

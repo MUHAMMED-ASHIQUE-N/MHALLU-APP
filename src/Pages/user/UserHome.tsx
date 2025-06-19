@@ -1,8 +1,6 @@
 import { FC } from "react";
 import  LargeScreenUi  from "../../components/common/LargeScreenUi";
 import  useIsSmallScreen  from "../../hooks/useIsSmallScreen";
-import { Header } from "../../Layout/user/Header";
-import  {AppNavbar}  from "../../Layout/user/AppNavbar";
 import CardSvg from "../../assets/icons/card-svgrepo-com.svg";
 import MessSvg from "../../assets/icons/kitchen-cooker-utensils-svgrepo-com.svg";
 import NOCSvg from "../../assets/icons/memo-svgrepo-com.svg";
@@ -17,9 +15,8 @@ export const UserHome: FC = () => {
   }
 
   return (
-    <div className="bg-white  min-h-dvh">
+    <div className="bg-white">
       
-      <Header />
       <div className="p-4">
         <div className="bg-black rounded-2xl overflow-hidden h-48">
           <img
@@ -51,7 +48,6 @@ export const UserHome: FC = () => {
           />
         </div>
       </div>
-      <AppNavbar />
      
     </div>
   );

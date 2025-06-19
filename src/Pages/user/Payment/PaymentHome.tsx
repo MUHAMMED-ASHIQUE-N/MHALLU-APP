@@ -1,6 +1,4 @@
 import { FC } from "react";
-import { Header } from "../../../Layout/user/Header";
-import { AppNavbar } from "../../../Layout/user/AppNavbar";
 import CardSvg from "../../../assets/icons/card-svgrepo-com.svg";
 import { useNavigate } from "react-router-dom";
 import MessSvg from "../../../assets/icons/plate-knife-fork-icon.svg";
@@ -35,8 +33,7 @@ export const PaymentHome: FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative min-h-screen bg-gray-100 pb-20">
-      <Header />
+    <div className="relativebg-gray-100 pb-20">
 
       <main className="px-4 pt-8 pb-2 max-w-sm mx-auto">
         <PaymentCard
@@ -54,7 +51,6 @@ export const PaymentHome: FC = () => {
         />
       </main>
 
-      <AppNavbar />
     </div>
   );
 };

@@ -15,7 +15,7 @@ const AmountCard: FC = () => (
 );
 
 const QrCodePayment: FC = () => (
-  <div className="relative min-h-screen bg-gray-100 pb-20">
+  <div className="relative min-h-dvh bg-gray-100 pb-20">
     {/* Header */}
     <HeaderBar title="Qr Code Payment" />
 

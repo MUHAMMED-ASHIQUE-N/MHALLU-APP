@@ -33,16 +33,15 @@ const requests = [
 ];
 
 const RequestTable: React.FC = () => (
-  <div className="bg-white rounded-lg shadow-md p-0 overflow-x-auto">
+  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-0 overflow-x-auto transition-colors duration-300">
     <table className="min-w-full text-left">
       <thead>
-        <tr className="bg-gray-50">
-          <th className="py-2 px-4 font-medium">Request Type</th>
-          <th className="py-2 px-4 font-medium">User</th>
-          <th className="py-2 px-4 font-medium">Status</th>
-          <th className="py-2 px-4 font-medium">Priority</th>
-          <th className="py-2 px-4 font-medium">Date</th>
-          <th className="py-2 px-4 font-medium">Acrions</th>
+        <tr className="bg-gray-50 dark:bg-gray-700 transition-colors duration-300">
+          <th className="py-2 px-4 font-medium text-gray-700 dark:text-gray-200">Request Type</th>
+          <th className="py-2 px-4 font-medium text-gray-700 dark:text-gray-200">User</th>
+          <th className="py-2 px-4 font-medium text-gray-700 dark:text-gray-200">Status</th>
+          <th className="py-2 px-4 font-medium text-gray-700 dark:text-gray-200">Date</th>
+          <th className="py-2 px-4 font-medium text-gray-700 dark:text-gray-200">Actions</th>
         </tr>
       </thead>
       <tbody>

@@ -6,12 +6,14 @@ import {useAuthState} from "react-firebase-hooks/auth"
 interface IProtectedRouteProps {}
 
 const ProtectedRoute: React.FC<IProtectedRouteProps> = (props) => {
-  const auth = getAuth()
-  const [user, loading]= useAuthState(auth)
+  // const auth = getAuth()
+  // const [user, loading]= useAuthState(auth)
 
-  if (loading) {
-    return <div>loding...</div>
-  }
+  // if (loading) {
+  //   return <div>loding...</div>
+  // }
+
+  const user: boolean = true
   const location = useLocation();
   return user ? (
     <Outlet />

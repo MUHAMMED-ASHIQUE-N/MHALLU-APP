@@ -12,8 +12,8 @@ import {
   PlugInIcon,
   TableIcon,
   UserCircleIcon,
-} from "../assets/icons";
-import { useSidebar } from "../context/SidebarContext";
+} from "../../assets/icons";
+import { useSidebar } from "../../context/admin/SidebarContext";
 
 type NavItem = {
   name: string;
@@ -26,35 +26,36 @@ const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "Dashboard",
-    path: "/",
+    path: "/admin/dashboard",
   },
   {
     icon: <UserCircleIcon />,
     name: "User Management",
     subItems: [
-      { name: "Head of Families", path: "/users" },
-      { name: "All Users", path: "/users" },
+       { name: "All Users", path: "/admin/all-users" },
+      { name: "Head of Families", path: "/admin/users" },
+ 
     ],
   },
   {
     icon: <ListIcon />,
     name: "Request Management",
-    path: "/requests",
+    path: "/admin/requests",
   },
   {
     icon: <CalenderIcon />,
     name: "Notification Management",
-    path: "/notifications",
+    path: "/admin/notifications",
   },
   {
     icon: <TableIcon />,
     name: "Payment Management",
-    path: "/payments",
+    path: "/admin/payments",
   },
   {
     icon: <PageIcon />,
     name: "Complaints Management",
-    path: "/complaints",
+    path: "/admin/complaints",
   },
 ];
 

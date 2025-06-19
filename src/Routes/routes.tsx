@@ -11,56 +11,70 @@ import FamilyInformation from "../Pages/user/Profile/FamilyInformation";
 import FamilyMemberDetails from "../Pages/user/Profile/FamilyMemberDetails";
 import Settings from "../Pages/user/Settings";
 import ProtectedRoute from "../components/protectedRoute";
+import Dashboard from "../Pages/AdminPages/AdminHome";
+import UsersPage from "../Pages/AdminPages/HeadofFamilies";
+import AllUsersPage from "../Pages/AdminPages/AllUsers";
+import RequestsPages from "../Pages/AdminPages/RequestPage";
+import NotificationPage from "../Pages/AdminPages/NotificationPages";
+import PaymentDashboard from "../Pages/AdminPages/PaymentDashboard";
+import Paymenttable from "../Pages/AdminPages/Paymenttable";
+import ComplaintsManagement from "../Pages/AdminPages/ComplaintsManagement";
+import AppLayout from "../layout/admin/AppLayout";
+import UserMainLayout from "../layout/user/UserMainLayout";
 
+
+// router.tsx
 const router = createBrowserRouter([
   {
     element: <ProtectedRoute />,
-    
+    errorElement: <Error />,
     children: [
       {
-        path: "/",
-        element: <UserHome />,
-        errorElement: <Error />,
+        // Layout for routes that need Header + AppNavbar
+        element: <UserMainLayout />,
+        children: [
+          { path: "/", element: <UserHome /> },
+          { path: "payment", element: <PaymentHome /> },
+          { path: "family-information", element: <FamilyInformation /> },
+          { path: "settings", element: <Settings /> },
+        ],
       },
       {
-        path: "/payment",
-        element: <PaymentHome />,
-        errorElement: <Error />,
-      },
-      {
-        path: "/monthly-payment",
+        // Routes that use HeaderBar inside the component itself
+        path: "monthly-payment",
         element: <MonthlyPayment />,
-        errorElement: <Error />,
       },
       {
-        path: "/qr-code-payment",
+        path: "qr-code-payment",
         element: <QrCodePayment />,
-        errorElement: <Error />,
       },
       {
-        path: "/upi-payment",
+        path: "upi-payment",
         element: <UpiPayment />,
-        errorElement: <Error />,
       },
       {
-        path: "/my-certificates",
+        path: "my-certificates",
         element: <MyCertificates />,
-        errorElement: <Error />,
       },
       {
-        path: "/family-information",
-        element: <FamilyInformation />,
-        errorElement: <Error />,
-      },
-      {
-        path: "/family-member",
+        path: "family-member",
         element: <FamilyMemberDetails />,
-        errorElement: <Error />,
       },
+
+      // Admin routes
       {
-        path: "/settings",
-        element: <Settings />,
-        errorElement: <Error />,
+        path: "/admin",
+        element: <AppLayout />,
+        children: [
+          { path: "dashboard", element: <Dashboard /> },
+          { path: "users", element: <UsersPage /> },
+          { path: "all-users", element: <AllUsersPage /> },
+          { path: "requests", element: <RequestsPages /> },
+          { path: "notifications", element: <NotificationPage /> },
+          { path: "payments", element: <PaymentDashboard /> },
+          { path: "payment-table", element: <Paymenttable /> },
+          { path: "complaints", element: <ComplaintsManagement /> },
+        ],
       },
     ],
   },
@@ -72,4 +86,7 @@ const router = createBrowserRouter([
   },
 ]);
 
+
+
 export default router;
+
