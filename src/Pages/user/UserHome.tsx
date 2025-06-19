@@ -9,7 +9,7 @@ import NOCSvg from "../../assets/icons/memo-svgrepo-com.svg";
 import ComplaintsSvg from "../../assets/icons/comment-2-svgrepo-com.svg";
 import { ServiceCard } from "../../components/common/ServiceCard";
 import { useNavigate } from "react-router-dom";
-export const Home: FC = () => {
+export const UserHome: FC = () => {
   const isSmallScreen = useIsSmallScreen();
   const navigate = useNavigate();
   if (isSmallScreen) {
@@ -57,4 +57,4 @@ export const Home: FC = () => {
   );
 };
 
-export default Home;
+export default UserHome;

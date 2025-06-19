@@ -1,45 +1,21 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Suspense, lazy } from "react";
-import MonthlyPayment from "./Pages/user/Payment/MonthlyPayment";
-import QrCodePayment from "./Pages/user/Payment/QrCodePayment";
-import UpiPayment from "./Pages/user/Payment/UpiPayment";
-import MyCertificates from "./Pages/user/Certificates/MyCertificates";
-import FamilyInformation from "./Pages/user/Profile/FamilyInformation";
-import FamilyMemberDetails from "./Pages/user/Profile/FamilyMemberDetails";
-import Settings from "./Pages/user/Settings";
+import * as React from 'react';
+import { RouterProvider } from 'react-router-dom';
+import router from './Routes/routes';
+import { UserAuthProvider } from './context/user/userAuthContext';
 
-// Lazy load components
-const Login = lazy(() => import("./Pages/Login"));
-const Home = lazy(() => import("./Pages/user/UserHome"));
-const PaymentHome = lazy(() => import("./Pages/user/Payment/PaymentHome"));
-
-function App() {
-  return (
-    <Router>
-      <Suspense fallback={
-        <div className="flex justify-center items-center h-screen">
-          <span className="text-teal-600 font-bold text-lg">Loading...</span>
-        </div>
-      }>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/payment" element={<PaymentHome />} />
-          <Route path="/monthly-payment" element={<MonthlyPayment />} />
-          <Route path="/qr-code-payment" element={<QrCodePayment />} />
-          <Route path="/upi-payment" element={<UpiPayment />} />
-          <Route path="/my-certificates" element={<MyCertificates />} />
-          <Route path="/family-information" element={<FamilyInformation />} />
-          <Route path="/family-member" element={<FamilyMemberDetails />} />
-          <Route path="/settings" element={<Settings />} />
-          {/* Add more routes here as needed */}
-        </Routes>
-      </Suspense>
-    </Router>
-  );
+interface IAppProps {
 }
 
+const App: React.FC<IAppProps> = (props) => {
+  return (
+    <UserAuthProvider>
+    <RouterProvider router={router}/>
+    </UserAuthProvider>
+  )
+};
+
 export default App;
+
 
 // import React from 'react'
 

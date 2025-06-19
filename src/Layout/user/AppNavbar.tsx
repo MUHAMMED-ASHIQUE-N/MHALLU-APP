@@ -16,7 +16,7 @@ export const AppNavbar: FC = () => {
       icon: location.pathname === "/home" ? HomeActiveSvg : HomeSvg,
       alt: "Home",
       size: "w-10 h-10",
-      path: "/home",
+      path: "/",
     },
     {
       icon: PaySvg,
