@@ -2,25 +2,12 @@ import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppNavbar } from "../../Layout/user/AppNavbar";
 import Button from "../../components/ui/button/Button";
-
-const BackButton: FC = () => {
-  const navigate = useNavigate();
-  return (
-    <button
-      onClick={() => navigate(-1)}
-      aria-label="Go back"
-      className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-gray-100"
-    >
-      <svg width={24} height={24} fill="none" viewBox="0 0 24 24">
-        <path d="M15 18l-6-6 6-6" stroke="#166a5c" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    </button>
-  );
-};
+import { useUserAuth } from "../../context/user/userAuthContext";
 
 const Settings: FC = () => {
   const [darkMode, setDarkMode] = useState(false);
-
+  const {logOut} = useUserAuth();
+  const navigate = useNavigate();
   const handleThemeToggle = () => {
     setDarkMode((prev) => !prev);
     if (!darkMode) {
@@ -30,9 +17,13 @@ const Settings: FC = () => {
     }
   };
 
-  const handleLogout = () => {
-    // Clear auth/session here if needed
-    window.location.href = "/"; // Redirect to login page
+ const handleLogout = async () => {
+    try {
+      await logOut();
+      navigate("/login", { replace: true }); // Redirect after logout
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
 
   return (

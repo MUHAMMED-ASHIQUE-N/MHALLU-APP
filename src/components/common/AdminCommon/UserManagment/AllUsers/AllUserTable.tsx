@@ -3,6 +3,9 @@ import AllUserTableRow from "./AllUserTableRow";
 import Button from "../../../../ui/button/Button";
 import { Modal } from "../../../../ui/Modal/index"; // Adjust import path as needed
 import { ButtonForm } from "../../../../form/ButtonForm";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../../../../../firebase/firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
 
 const users = [
  {
@@ -146,12 +149,30 @@ const UserTable: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would call your registration logic (e.g., Firebase)
-    // await registerUser(form)
+   try {
+
+    const userCred = await createUserWithEmailAndPassword(auth, form.email, form.password);
+    const uid = userCred.user.uid;
+
+    await setDoc(doc(db, "users", uid), {
+      name:form.name,
+      email:form.email,
+      phone:form.phone,
+      role:form.role,
+      createdAt:Date.now(),
+    });
     handleClose();
-    // Optionally, refresh users list or show a success message
+
+    
+   } catch (error) {
+     console.error("Registration error:", error);
+     console.log(error);
+     
+    
+   }
+   
   };
 
   return (

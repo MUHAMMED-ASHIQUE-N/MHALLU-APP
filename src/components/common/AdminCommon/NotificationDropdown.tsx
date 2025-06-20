@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Dropdown } from "../../ui/dropdown/Dropdown";
 import { DropdownItem } from "../../ui/dropdown/DropdownItem";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import Button from "../../ui/button/Button";
+import { useUserAuth } from "../../../context/user/userAuthContext";
 
 export default function NotificationDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const [notifying, setNotifying] = useState(true);
-
+  const { logOut } = useUserAuth();
+  const navigate = useNavigate();
   function toggleDropdown() {
     setIsOpen(!isOpen);
   }
@@ -18,6 +21,15 @@ export default function NotificationDropdown() {
   const handleClick = () => {
     toggleDropdown();
     setNotifying(false);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      navigate("/login", { replace: true }); // Redirect after logout
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
   return (
     <div className="relative">
@@ -114,7 +126,7 @@ export default function NotificationDropdown() {
             </DropdownItem>
           </li>
 
-          <li>
+          {/* <li>
             <DropdownItem
               onItemClick={closeDropdown}
               className="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
@@ -148,9 +160,9 @@ export default function NotificationDropdown() {
                 </span>
               </span>
             </DropdownItem>
-          </li>
+          </li> */}
 
-          <li>
+          {/* <li>
             <DropdownItem
               onItemClick={closeDropdown}
               className="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
@@ -184,9 +196,9 @@ export default function NotificationDropdown() {
                 </span>
               </span>
             </DropdownItem>
-          </li>
+          </li> */}
 
-          <li>
+          {/* <li>
             <DropdownItem
               onItemClick={closeDropdown}
               className="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
@@ -221,9 +233,9 @@ export default function NotificationDropdown() {
                 </span>
               </span>
             </DropdownItem>
-          </li>
+          </li> */}
 
-          <li>
+          {/* <li>
             <DropdownItem
               className="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
               onItemClick={closeDropdown}
@@ -365,7 +377,7 @@ export default function NotificationDropdown() {
                 </span>
               </span>
             </DropdownItem>
-          </li>
+          </li> */}
           {/* Add more items as needed */}
         </ul>
         <Link
@@ -374,6 +386,10 @@ export default function NotificationDropdown() {
         >
           View All Notifications
         </Link>
+
+        <Button variant="bg_lener" className="my-4" onClick={handleLogout}>
+          Logout
+        </Button>
       </Dropdown>
     </div>
   );
