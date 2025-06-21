@@ -6,13 +6,13 @@ import Loading from "../common/Loading";
 const UserRoute: FC = () => {
   const { user, role, loading } = useUserAuth();
   const location = useLocation();
-    if (loading) {
-          return <Loading/>;
-     }
-  if (!user) {
-   return  <Navigate to={"/login"} state={{ from: location }} replace />;
+  if (loading) {
+    return <Loading />;
   }
-  if (role !== "user") {
+  if (!user) {
+    return <Navigate to={"/login"} state={{ from: location }} replace />;
+  }
+  if (role !== "family") {
     return <Navigate to="/admin/dashboard" replace />;
   }
 

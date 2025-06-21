@@ -23,9 +23,14 @@ import AppLayout from "../layout/admin/AppLayout";
 import UserMainLayout from "../layout/user/UserMainLayout";
 import UserRoute from "../components/protectedRoute/UserRoute";
 import AdminRoute from "../components/protectedRoute/AdminRoute";
-
+import CreateFamily from "../Pages/AdminPages/CreateFamily";
+import AppProviders  from "../context/AppProviders"
 // router.tsx
 const router = createBrowserRouter([
+   {
+    element: <AppProviders />, // all routes are wrapped with providers
+    children: [
+      
   {
     element: <ProtectedRoute />,
     errorElement: <Error />,
@@ -81,6 +86,7 @@ const router = createBrowserRouter([
               { path: "users", element: <UsersPage /> },
               { path: "all-users", element: <AllUsersPage /> },
               { path: "requests", element: <RequestsPages /> },
+              { path: "family-creation", element: <CreateFamily /> },
               { path: "notifications", element: <NotificationPage /> },
               { path: "payments", element: <PaymentDashboard /> },
               { path: "payment-table", element: <Paymenttable /> },
@@ -97,6 +103,9 @@ const router = createBrowserRouter([
     element: <Login />,
     errorElement: <Error />,
   },
+    ]
+   },
+
 ]);
 
 export default router;

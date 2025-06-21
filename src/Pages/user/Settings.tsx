@@ -6,7 +6,7 @@ import { useUserAuth } from "../../context/user/userAuthContext";
 
 const Settings: FC = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const {logOut} = useUserAuth();
+  const {logout} = useUserAuth();
   const navigate = useNavigate();
   const handleThemeToggle = () => {
     setDarkMode((prev) => !prev);
@@ -19,7 +19,7 @@ const Settings: FC = () => {
 
  const handleLogout = async () => {
     try {
-      await logOut();
+      await logout();
       navigate("/login", { replace: true }); // Redirect after logout
     } catch (error) {
       console.error("Logout failed:", error);

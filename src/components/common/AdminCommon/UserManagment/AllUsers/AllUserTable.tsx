@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import AllUserTableRow from "./AllUserTableRow";
-import Button from "../../../../ui/button/Button";
-import { Modal } from "../../../../ui/Modal/index"; // Adjust import path as needed
-import { ButtonForm } from "../../../../form/ButtonForm";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../../../../../firebase/firebaseConfig";
-import { doc, setDoc } from "firebase/firestore";
+// import React, from "react";
+// import AllUserTableRow from "./AllUserTableRow";
+// import Button from "../../../../ui/button/Button";
+// import { Modal } from "../../../../ui/Modal/index"; // Adjust import path as needed
+// import { ButtonForm } from "../../../../form/ButtonForm";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { auth, db } from "../../../../../firebase/firebaseConfig";
+// import { doc, setDoc } from "firebase/firestore";
 
 const users = [
  {
@@ -122,65 +122,64 @@ const users = [
 ];
 
 const UserTable: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    password: "",
-    role: "user", // default role
-  });
+//   const [form, setForm] = useState({
+//     name: "",
+//     phone: "",
+//     email: "",
+//     password: "",
+//     role: "user", // default role
+//   });
 
-  const handleOpen = () => setIsModalOpen(true);
-  const handleClose = () => setIsModalOpen(false);
+//   const handleOpen = () => setIsModalOpen(true);
+//   const handleClose = () => setIsModalOpen(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value, type, checked } = e.target;
+  //   setForm((prev) => ({
+  //     ...prev,
+  //     [name]: type === "checkbox" ? checked : value,
+  //   }));
+  // };
 
-  const handleRoleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm((prev) => ({
-      ...prev,
-      role: e.target.value,
-    }));
-  };
+  // const handleRoleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setForm((prev) => ({
+  //     ...prev,
+  //     role: e.target.value,
+  //   }));
+  // };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-   try {
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //  try {
 
-    const userCred = await createUserWithEmailAndPassword(auth, form.email, form.password);
-    const uid = userCred.user.uid;
+  //   const userCred = await createUserWithEmailAndPassword(auth, form.email, form.password);
+  //   const uid = userCred.user.uid;
 
-    await setDoc(doc(db, "users", uid), {
-      name:form.name,
-      email:form.email,
-      phone:form.phone,
-      role:form.role,
-      createdAt:Date.now(),
-    });
-    handleClose();
+  //   await setDoc(doc(db, "users", uid), {
+  //     name:form.name,
+  //     email:form.email,
+  //     phone:form.phone,
+  //     role:form.role,
+  //     createdAt:Date.now(),
+  //   });
+  //   handleClose();
 
     
-   } catch (error) {
-     console.error("Registration error:", error);
-     console.log(error);
+  //  } catch (error) {
+  //    console.error("Registration error:", error);
+  //    console.log(error);
      
     
-   }
+  //  }
    
-  };
+  // };
 
   return (
     <div>
-      <Button variant="bg_lener" onClick={handleOpen} className="my-4">
+      <Button variant="bg_lener"  className="my-4">
         Add User
       </Button>
-      <Modal isOpen={isModalOpen} onClose={handleClose} className="max-w-md">
+      {/* <Modal isOpen={isModalOpen} onClose={handleClose} className="max-w-md">
         <form className="p-6" onSubmit={handleSubmit}>
           <h2 className="text-xl font-bold mb-4">Register New User</h2>
           <div className="mb-2">
@@ -257,7 +256,7 @@ const UserTable: React.FC = () => {
             </ButtonForm>
           </div>
         </form>
-      </Modal>
+      </Modal> */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-0 overflow-x-auto transition-colors duration-300">
         <table className="min-w-full text-left">
           <thead>

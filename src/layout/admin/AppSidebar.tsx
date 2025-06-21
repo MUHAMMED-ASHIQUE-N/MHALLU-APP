@@ -43,6 +43,11 @@ const navItems: NavItem[] = [
     path: "/admin/requests",
   },
   {
+    icon: <ListIcon />,
+    name: "Family creation ",
+    path: "/admin/family-creation",
+  },
+  {
     icon: <CalenderIcon />,
     name: "Notification Management",
     path: "/admin/notifications",

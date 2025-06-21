@@ -8,7 +8,7 @@ import { useUserAuth } from "../../../context/user/userAuthContext";
 export default function NotificationDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const [notifying, setNotifying] = useState(true);
-  const { logOut } = useUserAuth();
+  const { logout } = useUserAuth();
   const navigate = useNavigate();
   function toggleDropdown() {
     setIsOpen(!isOpen);
@@ -25,7 +25,7 @@ export default function NotificationDropdown() {
 
   const handleLogout = async () => {
     try {
-      await logOut();
+      await logout();
       navigate("/login", { replace: true }); // Redirect after logout
     } catch (error) {
       console.error("Logout failed:", error);
