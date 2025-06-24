@@ -1,11 +1,6 @@
-// import React, from "react";
-// import AllUserTableRow from "./AllUserTableRow";
-// import Button from "../../../../ui/button/Button";
-// import { Modal } from "../../../../ui/Modal/index"; // Adjust import path as needed
-// import { ButtonForm } from "../../../../form/ButtonForm";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
-// import { auth, db } from "../../../../../firebase/firebaseConfig";
-// import { doc, setDoc } from "firebase/firestore";
+
+import AllUserTableRow from "./AllUserTableRow";
+;
 
 const users = [
  {
@@ -176,9 +171,7 @@ const UserTable: React.FC = () => {
 
   return (
     <div>
-      <Button variant="bg_lener"  className="my-4">
-        Add User
-      </Button>
+   
       {/* <Modal isOpen={isModalOpen} onClose={handleClose} className="max-w-md">
         <form className="p-6" onSubmit={handleSubmit}>
           <h2 className="text-xl font-bold mb-4">Register New User</h2>

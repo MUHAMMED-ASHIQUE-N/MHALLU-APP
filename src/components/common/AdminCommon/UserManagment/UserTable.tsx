@@ -127,9 +127,11 @@ const UserTable: React.FC = () => (
         </tr>
       </thead>
       <tbody>
+        <tr>
         {users.map((user, idx) => (
-          <UserTableRow key={idx} {...user} />
+          <UserTableRow  key={idx} {...user} />
         ))}
+        </tr>
       </tbody>
     </table>
   </div>

@@ -1,8 +1,10 @@
+// ChatList.tsx
 import React from "react";
 import UserListItem from "./UserListItem";
 import SortingDropdown from "./SortingDropdown";
-import { chatPreviews } from "../../../../data/chats";
-import { users } from "../../../../data/users";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../../redux/store";
+
 
 type Props = {
   selectedUserId: string;
@@ -10,22 +12,25 @@ type Props = {
 };
 
 export const ChatList: React.FC<Props> = ({ selectedUserId, setSelectedUserId }) => {
+  const { data } = useSelector((state: RootState) => state.complaints);
+
   return (
     <div className="bg-[#c6f7ef] dark:bg-gray-900 w-full h-full p-4">
       <SortingDropdown />
       <div>
-        {chatPreviews.map((chat, idx) => {
-          const user = users.find(u => u.id === chat.userId)!;
-          return (
-            <UserListItem
-              key={user.id + idx}
-              user={user}
-              chat={chat}
-              selected={selectedUserId === user.id}
-              onClick={() => setSelectedUserId(user.id)}
-            />
-          );
-        })}
+        {data.map((user, idx) => (
+          <UserListItem
+            key={user.id + idx}
+            user={user}
+            chat={{
+              userId: user.id,
+              unreadCount: 0,
+              lastMessageTime: new Date(user.createdAt).toLocaleString(),
+            }}
+            selected={selectedUserId === user.id}
+            onClick={() => setSelectedUserId(user.id)}
+          />
+        ))}
       </div>
     </div>
   );

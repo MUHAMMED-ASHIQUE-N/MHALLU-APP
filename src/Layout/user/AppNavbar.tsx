@@ -56,3 +56,5 @@ export const AppNavbar: FC = () => {
     </div>
   );
 };
+
+export default AppNavbar

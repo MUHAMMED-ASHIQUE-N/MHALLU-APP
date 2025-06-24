@@ -1,7 +1,17 @@
+// MessageBubble.tsx
 import React from "react";
-import type { Message } from "../../../../data/chats";
-import type { User } from "../../../../data/users";
-import chatimg from "../../../../assets/images/pexels-justin-shaifer-501272-1222271.jpg";
+import chatimg from "../../../../assets/images/avathar.png";
+
+export type Message = {
+  id: string;
+  text: string;
+  time: string;
+};
+
+export type User = {
+  name: string;
+  avatar?: string;
+};
 
 type Props = {
   message: Message;

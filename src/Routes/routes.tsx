@@ -25,6 +25,7 @@ import UserRoute from "../components/protectedRoute/UserRoute";
 import AdminRoute from "../components/protectedRoute/AdminRoute";
 import CreateFamily from "../Pages/AdminPages/CreateFamily";
 import AppProviders  from "../context/AppProviders"
+import ComplaintBox from "../Pages/user/ComplaintBox";
 // router.tsx
 const router = createBrowserRouter([
    {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
           {
             path: "family-member",
             element: <FamilyMemberDetails />,
+          },
+          {
+            path: "complaints-box",
+            element: <ComplaintBox />,
           },
         ],
       },

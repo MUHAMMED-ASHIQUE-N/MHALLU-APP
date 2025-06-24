@@ -44,6 +44,7 @@ export const UserHome: FC = () => {
           />
           <ServiceCard
             icon={ComplaintsSvg}
+               onClick={() => navigate("/complaints-box")}
             labelLines={["Complaints /", "Suggestions"]}
           />
         </div>
