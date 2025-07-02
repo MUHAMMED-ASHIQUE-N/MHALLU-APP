@@ -13,6 +13,7 @@ type Props = {
 
 export const ChatList: React.FC<Props> = ({ selectedUserId, setSelectedUserId }) => {
   const { data } = useSelector((state: RootState) => state.complaints);
+     console.log("Fetched complaints:", data);
 
   return (
     <div className="bg-[#c6f7ef] dark:bg-gray-900 w-full h-full p-4">
@@ -21,7 +22,13 @@ export const ChatList: React.FC<Props> = ({ selectedUserId, setSelectedUserId })
         {data.map((user, idx) => (
           <UserListItem
             key={user.id + idx}
-            user={user}
+            user={
+              {
+                id: user.id,
+                name: user.name || "Unknown User",
+                avatar: user.avatar || "https://via.placeholder.com/150",
+              }
+            }
             chat={{
               userId: user.id,
               unreadCount: 0,

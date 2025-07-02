@@ -11,8 +11,8 @@ interface RequestTableRowProps {
   certificateType: string;
   name: string;
   status: "pending" | "accepted" | "rejected";
-  createdAt: string;
-  description: string;
+  createdAt: string | null;     // was string
+  description: string | null;   // was string
 }
 
 const statusColor: Record<"pending" | "accepted" | "rejected", string> = {
@@ -65,7 +65,7 @@ const RequestTableRow: React.FC<RequestTableRowProps> = ({
           </span>
         </td>
         <td className="py-2 px-4 text-gray-700 dark:text-gray-300">
-          {new Date(createdAt).toLocaleDateString()}
+          {createdAt ? new Date(createdAt).toLocaleDateString() : "N/A"}
         </td>
         <td className="py-2 text-center">
           <button
@@ -105,8 +105,7 @@ const RequestTableRow: React.FC<RequestTableRowProps> = ({
               <div className="flex flex-col items-start">
                 <h2 className="text-gray-700">Date Submitted</h2>
                 <p className="font-semibold  text-gray-800">
-                  {new Date(createdAt).toLocaleDateString()}
-                </p>
+  {createdAt ? new Date(createdAt).toLocaleDateString() : "N/A"}                </p>
               </div>
             </div>
           </div>

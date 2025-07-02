@@ -41,9 +41,10 @@ const NotificationTable: React.FC = () => (
         </tr>
       </thead>
       <tbody>
-        {notifications.map((noti, idx) => (
-          <NotificationTableRow key={idx} {...noti} />
-        ))}
+       {notifications.map((noti, idx) => (
+  <NotificationTableRow key={idx} {...noti} status={noti.status as "Active" | "Inactive"} />
+))}
+
       </tbody>
     </table>
   </div>

@@ -2,10 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import './index.css';
 import { RouterProvider } from "react-router-dom";
-import router from "./Routes/routes.tsx";
-import App from "./App.tsx";
+import router from "../src/Routes/routes";
+import App from "../src/App";
 import {  Provider} from "react-redux";
-import  Store from "./redux/store.tsx";
+import  Store from "./redux/store";
 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
