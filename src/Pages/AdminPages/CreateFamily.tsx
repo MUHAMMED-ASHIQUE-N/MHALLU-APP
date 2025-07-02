@@ -1,9 +1,8 @@
-// src/pages/Admin/CreateFamily.tsx
 import React, { useState } from "react";
 import { initSecondaryAuth, firestore } from "../../firebase/firebaseConfig";
 import {
   createUserWithEmailAndPassword,
- type Auth as FirebaseAuth,
+  type Auth as FirebaseAuth,
 } from "firebase/auth";
 import {
   collection,
@@ -16,9 +15,22 @@ import { useUserAuth } from "../../context/user/userAuthContext";
 
 const EMAIL_DOMAIN = "mahallu-app.local";
 
+const BLOOD_GROUPS = [
+  "",
+  "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-",
+  "A1+", "A1-", "A2+", "A2-",
+  "A1B+", "A1B-", "A2B+", "A2B-",
+  "Bombay Blood Group",
+];
+
 interface Member {
   name: string;
   relation: string;
+  email?: string;
+  phone?: string; // Added phone field
+  bloodGroup?: string;
+  education?: string;
+  dob?: string;
 }
 
 const CreateFamily: React.FC = () => {
@@ -41,7 +53,10 @@ const CreateFamily: React.FC = () => {
   };
 
   const addMemberField = () => {
-    setMembers((prev) => [...prev, { name: "", relation: "" }]);
+    setMembers((prev) => [
+      ...prev,
+      { name: "", relation: "" },
+    ]);
   };
   const removeMemberField = (idx: number) => {
     setMembers((prev) => prev.filter((_, i) => i !== idx));
@@ -60,10 +75,8 @@ const CreateFamily: React.FC = () => {
       setError("House number and password are required");
       return;
     }
-    // Optional: check uniqueness of houseNumber in Firestore
     setLoading(true);
     try {
-      // 1. Check if a family with this houseNumber already exists
       const familiesCol = collection(firestore, "families");
       const familyDocRef = doc(firestore, "families", houseNumber);
       const snap = await getDoc(familyDocRef);
@@ -71,7 +84,6 @@ const CreateFamily: React.FC = () => {
         throw new Error("House number already exists");
       }
 
-      // 2. Create Auth user via secondary auth
       const { auth: secondaryAuth, delete: deleteSecondary } = initSecondaryAuth();
       const email = `${houseNumber}@${EMAIL_DOMAIN}`;
       let userCredential;
@@ -84,12 +96,10 @@ const CreateFamily: React.FC = () => {
       } catch (err: any) {
         throw new Error(`Failed to create auth user: ${err.message}`);
       } finally {
-        // Clean up secondary auth so admin session remains
         await deleteSecondary();
       }
       const familyUid = userCredential.user.uid;
 
-      // 3. Create Firestore family doc
       const familyData = {
         houseNumber,
         createdBy: adminUser.uid,
@@ -97,20 +107,24 @@ const CreateFamily: React.FC = () => {
       };
       await setDoc(familyDocRef, familyData);
 
-      // 4. Create subcollection "members"
       const membersColRef = collection(familyDocRef, "members");
       for (const member of members) {
         if (member.name.trim()) {
-          const memberDocRef = doc(membersColRef); // auto id
+          const memberDocRef = doc(membersColRef);
+          const { name, relation, email, phone, bloodGroup, education, dob } = member;
           await setDoc(memberDocRef, {
-            name: member.name.trim(),
-            relation: member.relation.trim(),
+            name: name.trim(),
+            relation: relation.trim(),
+            email: email?.trim() || "",
+            phone: phone?.trim() || "", // Save phone number
+            bloodGroup: bloodGroup || "",
+            education: education?.trim() || "",
+            dob: dob || "",
             createdAt: serverTimestamp(),
           });
         }
       }
 
-      // 5. Create users/{uid} doc
       const userDocRef = doc(firestore, "users", familyUid);
       await setDoc(userDocRef, {
         role: "family",
@@ -119,7 +133,6 @@ const CreateFamily: React.FC = () => {
       });
 
       setSuccessMsg("Family created successfully");
-      // Reset form
       setHouseNumber("");
       setPassword("");
       setMembers([{ name: "", relation: "" }]);
@@ -157,32 +170,76 @@ const CreateFamily: React.FC = () => {
         <div className="mb-4">
           <h3 className="font-medium">Family Members</h3>
           {members.map((m, idx) => (
-            <div key={idx} className="flex space-x-2 items-center mb-2">
-              <input
-                type="text"
-                placeholder="Name"
-                value={m.name}
-                onChange={(e) => handleMemberChange(idx, "name", e.target.value)}
-                className="flex-1 p-2 border rounded"
-                required
-              />
-              <input
-                type="text"
-                placeholder="Relation"
-                value={m.relation}
-                onChange={(e) => handleMemberChange(idx, "relation", e.target.value)}
-                className="flex-1 p-2 border rounded"
-                required
-              />
-              {members.length > 1 && (
-                <button
-                  type="button"
-                  onClick={() => removeMemberField(idx)}
-                  className="text-red-600"
+            <div key={idx} className="border rounded p-3 mb-3">
+              <div className="flex space-x-2 items-center mb-2">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={m.name}
+                  onChange={(e) => handleMemberChange(idx, "name", e.target.value)}
+                  className="flex-1 p-2 border rounded"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Relation"
+                  value={m.relation}
+                  onChange={(e) => handleMemberChange(idx, "relation", e.target.value)}
+                  className="flex-1 p-2 border rounded"
+                  required
+                />
+                {members.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => removeMemberField(idx)}
+                    className="text-red-600"
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
+              <div className="flex flex-wrap gap-2 mb-2">
+                <input
+                  type="email"
+                  placeholder="Email (optional)"
+                  value={m.email || ""}
+                  onChange={(e) => handleMemberChange(idx, "email", e.target.value)}
+                  className="flex-1 p-2 border rounded"
+                />
+                <input
+                  type="tel"
+                  placeholder="Phone (optional)"
+                  value={m.phone || ""}
+                  onChange={(e) => handleMemberChange(idx, "phone", e.target.value)}
+                  className="flex-1 p-2 border rounded"
+                />
+                <select
+                  value={m.bloodGroup || ""}
+                  onChange={(e) => handleMemberChange(idx, "bloodGroup", e.target.value)}
+                  className="flex-1 p-2 border rounded"
                 >
-                  Remove
-                </button>
-              )}
+                  {BLOOD_GROUPS.map((bg) => (
+                    <option value={bg} key={bg}>
+                      {bg ? bg : "Select Blood Group (optional)"}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="text"
+                  placeholder="Education (optional)"
+                  value={m.education || ""}
+                  onChange={(e) => handleMemberChange(idx, "education", e.target.value)}
+                  className="flex-1 p-2 border rounded"
+                />
+                <input
+                  type="date"
+                  placeholder="DOB (optional)"
+                  value={m.dob || ""}
+                  onChange={(e) => handleMemberChange(idx, "dob", e.target.value)}
+                  className="flex-1 p-2 border rounded"
+                  max={new Date().toISOString().slice(0, 10)}
+                />
+              </div>
             </div>
           ))}
           <button

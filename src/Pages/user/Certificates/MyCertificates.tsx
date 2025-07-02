@@ -1,63 +1,45 @@
-import { FC, useState } from "react";
+import { useEffect, useState, type FC } from "react";
 import Button from "../../../components/ui/button/Button";
 import HeaderBar from "../../../Layout/user/HeaderBar";
 import { Modal } from "../../../components/ui/Modal/index";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/form/input/InputField";
-import PhoneInput from "../../../components/form/group-input/PhoneInput";
 import TextArea from "../../../components/form/input/TextArea";
 import { ButtonForm } from "../../../components/form/ButtonForm";
 import Form from "../../../components/form/Form";
+import { toast } from "react-toastify";
+import { addDoc, collection, query, where, onSnapshot, type DocumentData } from "firebase/firestore";
+import { firestore } from "../../../firebase/firebaseConfig";
+import { useUserAuth } from "../../../context/user/userAuthContext";
+import CertificateCard from "../../../components/common/user/CertificateCard";
+// ----- UI constants -----
+const CERTIFICATE_TYPES = [
+  { label: "Maarage Certificate", value: "maarage" },
+  { label: "Mahallu Clearance", value: "mahallu" },
+  { label: "Other Certificate", value: "other" },
+];
 
-// Example emoji icon, replace with your SVG if needed
+
+// ----- Types -----
+type StatusType = "pending" | "accepted" | "rejected";
+
+interface CertificateRequest {
+  id: string;
+  certificateType: string;
+  name: string;
+  status: StatusType;
+  createdAt: string;
+  description: string;
+}
+
+// ----- Utility function -----
+
+// ----- Components -----
 const CertificateIcon = () => (
   <span role="img" aria-label="certificate" className="text-xl mr-2">📜</span>
 );
 
-type StatusType = "Active" | "pending";
-const statusStyles: Record<StatusType, string> = {
-  Active: "bg-green-50 text-green-700",
-  pending: "bg-yellow-50 text-yellow-800",
-};
 
-const CERTIFICATE_TYPES = [
-  { label: "Maarage Certificate", value: "maarage" },
-  { label: "Mahallu Clearance", value: "mahallu" },
-  { label: "Other Certificate", value: "other" }
-];
-
-// Example country code list for phone input
-const COUNTRY_CODES = [
-  { code: "IN", label: "+91" },
-  { code: "US", label: "+1" },
-  { code: "AE", label: "+971" },
-  // Add more as needed
-];
-
-const CertificateCard: FC<{
-  status: StatusType;
-  title: string;
-  desc: string;
-  issuedOrReq: string;
-  date: string;
-}> = ({ status, title, desc, issuedOrReq, date }) => (
-  <div className="border-l-6 border-primary bg-white rounded-xl shadow-md px-4 py-6 mb-4">
-    <div className="pl-3">
-      <div className="flex items-center justify-between">
-        <div className="font-semibold text-gray-800">{title}</div>
-        <span className={`px-3 py-0.5 rounded-full text-xs font-semibold ml-2 ${statusStyles[status]}`}>
-          {status}
-        </span>
-      </div>
-      <div className="text-sm text-gray-500">{desc}</div>
-      <div className="text-xs text-gray-400 mt-1">
-        {issuedOrReq}: {date}
-      </div>
-    </div>
-  </div>
-);
-
-// -------- Modal Certificate Request Selection --------
 const CertificateRequestModal: FC<{
   isOpen: boolean;
   onClose: () => void;
@@ -80,28 +62,43 @@ const CertificateRequestModal: FC<{
   </Modal>
 );
 
-// -------- Certificate Request Form --------
 const CertificateRequestForm: FC<{
   type: string;
   isOpen: boolean;
   onClose: () => void;
 }> = ({ type, isOpen, onClose }) => {
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
   const [desc, setDesc] = useState("");
-  const [countryPhone, setCountryPhone] = useState("+91");
-  const navigate = useNavigate();
-
-  // Example: After submit, redirect to a success page or just close modal
-  const handleSubmit = () => {
-    // TODO: handle the submit logic (API, etc.)
-    onClose();
-    // Optionally redirect:
-    // navigate("/certificates/success");
-  };
+  const { familyId, user } = useUserAuth();
 
   const certificateLabel =
     CERTIFICATE_TYPES.find((c) => c.value === type)?.label || "Certificate";
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !desc) {
+      toast.error("Fill all the fields");
+      return;
+    }
+    try {
+      await addDoc(collection(firestore, "certificates"), {
+        certificateType: certificateLabel,
+        name,
+        description: desc,
+        createdAt: new Date(),
+        status: "pending",
+        familyId,
+        userId: user?.uid,
+      });
+      toast.success("Requested");
+      setDesc("");
+      setName("");
+      onClose();
+    } catch (error) {
+      console.error("Error in requesting certificates", error);
+      toast.error("Request failed");
+    }
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} className="max-w-xs mx-auto py-6 px-4" showCloseButton>
@@ -113,18 +110,9 @@ const CertificateRequestForm: FC<{
           <label className="block text-sm text-gray-700 mb-1">Name of person</label>
           <Input
             type="text"
-            required
             value={name}
             onChange={e => setName(e.target.value)}
             placeholder="Enter name"
-          />
-        </div>
-        <div>
-          <label className="block text-sm text-gray-700 mb-1">Phone</label>
-          <PhoneInput
-            countries={COUNTRY_CODES}
-            onChange={v => setCountryPhone(v)}
-            placeholder="+91 98765 43210"
           />
         </div>
         <div>
@@ -134,7 +122,6 @@ const CertificateRequestForm: FC<{
             onChange={setDesc}
             placeholder="Reason/description"
             rows={3}
-            required
           />
         </div>
         <ButtonForm
@@ -149,18 +136,56 @@ const CertificateRequestForm: FC<{
   );
 };
 
+// ----- Main Page -----
 const MyCertificates: FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [formType, setFormType] = useState<string | null>(null);
+  const [certificates, setCertificates] = useState<CertificateRequest[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { familyId } = useUserAuth();
+  const navigate = useNavigate();
+
+  // Fetch family's certificates
+  useEffect(() => {
+    if (!familyId) return;
+    setLoading(true);
+    const q = query(
+      collection(firestore, "certificates"),
+      where("familyId", "==", familyId),
+      where("status", "in", ["pending", "accepted", "rejected"])
+    );
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const data: CertificateRequest[] = querySnapshot.docs.map(doc => {
+        const d = doc.data() as DocumentData;
+        return {
+          id: doc.id,
+          certificateType: d.certificateType ?? "Unknown",
+          name: d.name ?? "",
+          status: (d.status as StatusType) ?? "pending",
+          createdAt: d.createdAt?.toDate?.().toLocaleDateString() ?? "",
+          description: d.description ?? "",
+        };
+      }).sort((a, b) => {
+        // Accepted first, then pending, then rejected, then by most recent
+        const order: StatusType[] = ["accepted", "pending", "rejected"];
+        if (a.status !== b.status) {
+          return order.indexOf(a.status) - order.indexOf(b.status);
+        }
+        return (b.createdAt || "").localeCompare(a.createdAt || "");
+      });
+      console.log("cert",data);
+      
+      setCertificates(data);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, [familyId]);
 
   return (
     <div className="relative min-h-dvh bg-gray-100 pb-8">
-      {/* Header */}
       <HeaderBar title="My Certificates" />
-
       <main className="px-4 pt-4 max-w-sm mx-auto">
-        {/* Available Certificates header */}
-        <div className="flex items-center justify-between mb-14">
+        <div className="flex items-center justify-between ">
           <div className="flex items-center font-semibold text-base text-gray-700">
             <CertificateIcon />
             Available Certificates
@@ -173,31 +198,39 @@ const MyCertificates: FC = () => {
             + Noc
           </Button>
         </div>
-
-        {/* Certificate cards */}
-        <CertificateCard
-          status="Active"
-          title="Bonafide Certificate"
-          desc="Student verification certificate"
-          issuedOrReq="Issued"
-          date="Dec 15, 2024"
-        />
-        <CertificateCard
-          status="pending"
-          title="Bonafide Certificate"
-          desc="Student verification certificate"
-          issuedOrReq="Requested"
-          date="Dec 15, 2024"
-        />
+        <div className="py-3 mb-12">
+          <button
+            onClick={() => navigate("/request-history")}
+            className="float-end text-stone-500 underline"
+          >
+            Request History
+          </button>
+        </div>
+        {loading && <div className="text-center text-gray-400 py-10">Loading...</div>}
+        {!loading && certificates.filter(cert => cert.status === "accepted").length === 0 && (
+          <div className="text-center text-gray-400 py-10">No certificate requests found.</div>
+        )}
+        
+        {certificates
+          .filter(cert => cert.status === "accepted")
+          .map(cert => (
+            <CertificateCard
+              onClick={() => navigate(`/certificate/${cert.id}`)}
+              key={cert.id}
+              status={cert.status}
+              title={cert.certificateType}
+              desc={cert.description}
+              issuedOrReq="Accepted"
+              date={cert.createdAt}
+            />
+          ))}
       </main>
-
       {/* Modal for certificate type selection */}
       <CertificateRequestModal
         isOpen={modalOpen && !formType}
         onClose={() => setModalOpen(false)}
-        onSelect={(type) => setFormType(type)}
+        onSelect={type => setFormType(type)}
       />
-
       {/* Modal for form input */}
       <CertificateRequestForm
         type={formType ?? ""}

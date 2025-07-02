@@ -11,18 +11,17 @@ interface UserTableRowProps {
   joinDate: string;
   payment: string;
   address: string;
+  dob?: string;
+  age?: number;
 }
 
 const AllUserTableRow: React.FC<UserTableRowProps> = ({
   name,
   phone,
-  email,
   bloodGroup,
-  aadhar,
-  pan,
-  joinDate,
-  payment,
   address,
+  dob,
+  age,
 }) => {
   const [popupOpen, setPopupOpen] = React.useState(false);
 
@@ -34,8 +33,9 @@ const AllUserTableRow: React.FC<UserTableRowProps> = ({
     <>
       <tr className="border-b border-gray-200 dark:border-gray-700 last:border-b-0 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
         <td className="py-3 px-4 text-gray-800 dark:text-gray-100 text-sm">{name}</td>
-        <td className="py-3 px-4 text-gray-800 dark:text-gray-100 text-sm">{phone}</td>
-        <td className="py-3 px-4 text-gray-800 dark:text-gray-100 text-sm">{email}</td>
+        <td className="py-3 px-4 text-gray-800 dark:text-gray-100 text-sm">{phone || "N/A"}</td>
+        <td className="py-3 px-4 text-gray-800 dark:text-gray-100 text-sm">{bloodGroup || "N/A"}</td>
+        <td className="py-3 px-4 text-gray-800 dark:text-gray-100 text-sm">{age !== undefined ? age : "N/A"}</td>
         <td className="py-3 px-4 flex items-center gap-4">
           <button
             onClick={setView}
@@ -91,36 +91,24 @@ const AllUserTableRow: React.FC<UserTableRowProps> = ({
                 <span className="text-gray-800 dark:text-gray-100 text-right">{name}</span>
               </div>
               <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
-                <span className="font-medium text-gray-600 dark:text-gray-300">Email</span>
-                <span className="text-gray-800 dark:text-gray-100 text-right">{email}</span>
+                <span className="font-medium text-gray-600 dark:text-gray-300">DOB</span>
+                <span className="text-gray-800 dark:text-gray-100 text-right">{dob || "N/A"}</span>
               </div>
               <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
-                <span className="font-medium text-gray-600 dark:text-gray-300">Phone Number</span>
-                <span className="text-gray-800 dark:text-gray-100 text-right">{phone}</span>
+                <span className="font-medium text-gray-600 dark:text-gray-300">Age</span>
+                <span className="text-gray-800 dark:text-gray-100 text-right">{age !== undefined ? age : "N/A"}</span>
               </div>
               <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
                 <span className="font-medium text-gray-600 dark:text-gray-300">Blood Group</span>
-                <span className="text-gray-800 dark:text-gray-100 text-right">{bloodGroup}</span>
+                <span className="text-gray-800 dark:text-gray-100 text-right">{bloodGroup || "N/A"}</span>
               </div>
               <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
-                <span className="font-medium text-gray-600 dark:text-gray-300">Aadhar Number</span>
-                <span className="text-gray-800 dark:text-gray-100 text-right">{aadhar}</span>
-              </div>
-              <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
-                <span className="font-medium text-gray-600 dark:text-gray-300">PAN Card Number</span>
-                <span className="text-gray-800 dark:text-gray-100 text-right">{pan}</span>
-              </div>
-              <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
-                <span className="font-medium text-gray-600 dark:text-gray-300">Join Date</span>
-                <span className="text-gray-800 dark:text-gray-100 text-right">{joinDate}</span>
-              </div>
-              <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
-                <span className="font-medium text-gray-600 dark:text-gray-300">Monthly Payment</span>
-                <span className="text-gray-800 dark:text-gray-100 text-right">{payment}</span>
+                <span className="font-medium text-gray-600 dark:text-gray-300">Phone</span>
+                <span className="text-gray-800 dark:text-gray-100 text-right">{phone || "N/A"}</span>
               </div>
               <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
                 <span className="font-medium text-gray-600 dark:text-gray-300">Address</span>
-                <span className="text-gray-800 dark:text-gray-100 text-right">{address}</span>
+                <span className="text-gray-800 dark:text-gray-100 text-right">{address || "N/A"}</span>
               </div>
             </div>
             <div className="mt-6 flex justify-center">

@@ -1,21 +1,21 @@
-import { FC } from "react";
-import  LargeScreenUi  from "../../components/common/LargeScreenUi";
-import  useIsSmallScreen  from "../../hooks/useIsSmallScreen";
+// import  LargeScreenUi  from "../../components/common/LargeScreenUi";
+// import  useIsSmallScreen  from "../../hooks/useIsSmallScreen";
 import CardSvg from "../../assets/icons/card-svgrepo-com.svg";
 import MessSvg from "../../assets/icons/kitchen-cooker-utensils-svgrepo-com.svg";
 import NOCSvg from "../../assets/icons/memo-svgrepo-com.svg";
 import ComplaintsSvg from "../../assets/icons/comment-2-svgrepo-com.svg";
 import { ServiceCard } from "../../components/common/ServiceCard";
 import { useNavigate } from "react-router-dom";
+import type { FC } from "react";
 export const UserHome: FC = () => {
-  const isSmallScreen = useIsSmallScreen();
+  // const isSmallScreen = useIsSmallScreen();
   const navigate = useNavigate();
-  if (isSmallScreen) {
-    return <LargeScreenUi />;
-  }
+  // if (isSmallScreen) {
+  //   return <LargeScreenUi />;
+  // }
 
   return (
-    <div className="bg-white">
+    <div className="bg-white min-h-dvh mx-auto container max-w-2xl">
       
       <div className="p-4">
         <div className="bg-black rounded-2xl overflow-hidden h-48">

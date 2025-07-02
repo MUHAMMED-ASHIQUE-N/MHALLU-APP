@@ -19,13 +19,15 @@ import NotificationPage from "../Pages/AdminPages/NotificationPages";
 import PaymentDashboard from "../Pages/AdminPages/PaymentDashboard";
 import Paymenttable from "../Pages/AdminPages/Paymenttable";
 import ComplaintsManagement from "../Pages/AdminPages/ComplaintsManagement";
-import AppLayout from "../layout/admin/AppLayout";
-import UserMainLayout from "../layout/user/UserMainLayout";
+import AppLayout from "../../src/Layout/admin/AppLayout";
+import UserMainLayout from "../../src/Layout/user/UserMainLayout";
 import UserRoute from "../components/protectedRoute/UserRoute";
 import AdminRoute from "../components/protectedRoute/AdminRoute";
 import CreateFamily from "../Pages/AdminPages/CreateFamily";
 import AppProviders  from "../context/AppProviders"
 import ComplaintBox from "../Pages/user/ComplaintBox";
+import RequestHitory from "../Pages/user/Certificates/RequestHistory";
+import CertificateDetails from "../Pages/user/Certificates/CertificateDetails";
 // router.tsx
 const router = createBrowserRouter([
    {
@@ -74,6 +76,14 @@ const router = createBrowserRouter([
           {
             path: "complaints-box",
             element: <ComplaintBox />,
+          },
+          {
+            path: "request-history",
+            element: <RequestHitory />,
+          },
+          {
+            path: "certificate/:id",
+            element: <CertificateDetails />,
           },
         ],
       },

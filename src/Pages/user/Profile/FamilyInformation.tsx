@@ -73,7 +73,7 @@ const FamilyInformation: FC = () => {
       <h2 className="text-slate-900 text-center py-4 text-2xl font-extrabold">Family Information</h2>
 
     <main className="px-4  max-w-md mx-auto">
-      {/* Family Photo */}
+      {/* Family Photo
       <div className="w-full rounded-2xl overflow-hidden shadow mb-4">
         <img
           src={FamilyPhoto}
@@ -81,7 +81,7 @@ const FamilyInformation: FC = () => {
           className="w-full h-44 object-cover"
           draggable={false}
         />
-      </div>
+      </div> */}
 
       {/* Family Info Card */}
       <div className="relative bg-white rounded-2xl shadow px-5 py-6 mb-6">
