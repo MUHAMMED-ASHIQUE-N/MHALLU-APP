@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface HeaderBarProps {
-  title: string;
+  title: string | null;
   onBack?: () => void;
   bgClassName?: string; // e.g. "bg-primary"
 }

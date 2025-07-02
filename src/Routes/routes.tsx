@@ -19,7 +19,7 @@ import NotificationPage from "../Pages/AdminPages/NotificationPages";
 import PaymentDashboard from "../Pages/AdminPages/PaymentDashboard";
 import Paymenttable from "../Pages/AdminPages/Paymenttable";
 import ComplaintsManagement from "../Pages/AdminPages/ComplaintsManagement";
-import AppLayout from "../Layout/admin/AppLayout";
+import AdminLayout from "../Layout/user/AdminLayout";
 import UserMainLayout from "../Layout/user/UserMainLayout";
 import UserRoute from "../components/protectedRoute/UserRoute";
 import AdminRoute from "../components/protectedRoute/AdminRoute";
@@ -95,7 +95,7 @@ const router = createBrowserRouter([
         element: <AdminRoute />,
         children: [
           {
-            element: <AppLayout />,
+            element: <AdminLayout />,
             children: [
               { path: "dashboard", element: <Dashboard /> },
               { path: "users", element: <UsersPage /> },
