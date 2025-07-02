@@ -13,4 +13,8 @@ export default defineConfig({
       '@layout': '/src/Layout',
     },
   },
+   build: {
+    // Optional - prevents native rollup plugins
+    target: 'esnext'
+  }
 })
