@@ -48,13 +48,13 @@ const Login: React.FC = () => {
     <div className="max-w-md mx-auto mt-20 p-6 border rounded shadow">
       <div className="flex mb-4">
         <button
-          className={`flex-1 py-2 ${!isAdminTab ? "border-b-2 border-blue-500" : ""}`}
+          className={`flex-1 py-2 ${!isAdminTab ? "border-b-2 border-primary" : ""}`}
           onClick={() => { setIsAdminTab(false); setError(null); }}
         >
           Family Login
         </button>
         <button
-          className={`flex-1 py-2 ${isAdminTab ? "border-b-2 border-blue-500" : ""}`}
+          className={`flex-1 py-2 ${isAdminTab ? "border-b-2 border-primary" : ""}`}
           onClick={() => { setIsAdminTab(true); setError(null); }}
         >
           Admin Login
