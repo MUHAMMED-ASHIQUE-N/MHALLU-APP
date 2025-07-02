@@ -7,7 +7,7 @@ import UserSvg from "../../assets/icons/user-svgrepo-com.svg";
 import SettingSvg from "../../assets/icons/settings-svgrepo-com.svg";
 import { NavIcon } from "../../components/common/NavIcon";
 
-export const AppNavbar: FC = () => {
+ const AppNavbar: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
