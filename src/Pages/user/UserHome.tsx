@@ -22,11 +22,12 @@ export const UserHome: FC = () => {
           <img
             src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=400&h=300&fit=crop"
             alt="Mosque at night"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover animate-pulse
+            transition duration-500 ease-in-out transform hover:scale-105"
           />
         </div>
       </div>
-      <div className="px-5 py-5 ">
+      <div className="px-5 pt-4 ">
         <div className="grid grid-cols-2 gap-6">
           <ServiceCard
           onClick={() => navigate("/payment")}

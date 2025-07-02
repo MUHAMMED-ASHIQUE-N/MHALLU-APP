@@ -70,7 +70,7 @@ const router = createBrowserRouter([
             element: <MyCertificates />,
           },
           {
-            path: "family-member",
+            path: "family-member/:id",
             element: <FamilyMemberDetails />,
           },
           {

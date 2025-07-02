@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { type FC } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import HomeSvg from "../../assets/icons/home-2-svgrepo-com.svg";
 import HomeActiveSvg from "../../assets/icons/home-Icon_active.svg";
