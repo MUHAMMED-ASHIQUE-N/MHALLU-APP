@@ -19,7 +19,7 @@ import NotificationPage from "../Pages/AdminPages/NotificationPages";
 import PaymentDashboard from "../Pages/AdminPages/PaymentDashboard";
 import Paymenttable from "../Pages/AdminPages/Paymenttable";
 import ComplaintsManagement from "../Pages/AdminPages/ComplaintsManagement";
-import AppLayout from "@layout/admin/AppLayout";
+import AppLayout from "../../src/Layout/admin/AppLayout";
 import UserMainLayout from "../../src/Layout/user/UserMainLayout";
 import UserRoute from "../components/protectedRoute/UserRoute";
 import AdminRoute from "../components/protectedRoute/AdminRoute";
