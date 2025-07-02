@@ -8,6 +8,7 @@ import { useUserAuth } from "../context/user/userAuthContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
 import { useNavigate, useLocation } from "react-router-dom";
+import { ButtonForm } from "../components/form/ButtonForm";
 
 // const EMAIL_DOMAIN = "mahallu-app.local";
 
@@ -100,9 +101,12 @@ const Login: React.FC = () => {
           </>
         )}
         {error && <p className="text-red-600 mb-2">{error}</p>}
-        <button type="submit" className="w-full py-2 bg-blue-500 text-white rounded">
-          Login
-        </button>
+        <div className="w-full py-4">
+        <ButtonForm type="submit" variant="bg_lener" className="w-full">
+        Login
+      </ButtonForm>
+        </div>
+      
       </form>
     </div>
   );
