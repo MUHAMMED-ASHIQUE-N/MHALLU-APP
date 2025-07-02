@@ -1,7 +1,7 @@
 import React from "react";
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
-    variant?: "default" | "outline" | "secondary" | "destructive" | "link";
+  variant?: "default" | "outline" | "secondary" | "destructive" | "link" |"bg_lener";
   size?: "default" | "sm" | "lg";
 }
 
@@ -13,6 +13,7 @@ export const ButtonForm = React.forwardRef<HTMLButtonElement, ButtonProps>(
       secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200",
       destructive: "bg-red-600 text-white hover:bg-red-700",
       link: "text-blue-600 underline-offset-4 hover:underline",
+      bg_lener: "bg-gradient-to-br from-[#0f766e] to-[#059669]  text-white shadow-theme-xs",
     };
 
     const sizeClasses = {
