@@ -2,9 +2,9 @@ import { type FC } from "react";
 import { useNavigate } from "react-router-dom";
 import QrSvg from "../../../assets/icons/QR_Code_Example.svg";
 import RazorpaySvg from "../../../assets/icons/razorpay-icon.svg";
-import  AppNavbar from "../../../layout/user/AppNavbar";
+import  AppNavbar from "../../../Layout/user/AppNavbar";
 
-import HeaderBar from "../../../layout/user/HeaderBar";
+import HeaderBar from "../../../Layout/user/HeaderBar";
 
 // You can replace with a dedicated BackButton component if you have one
 

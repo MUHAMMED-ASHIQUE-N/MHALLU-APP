@@ -1,6 +1,6 @@
 import { useEffect, useState, type FC } from "react";
 import Button from "../../../components/ui/button/Button";
-import HeaderBar from "../../../layout/user/HeaderBar";
+import HeaderBar from "../../../Layout/user/HeaderBar";
 import { Modal } from "../../../components/ui/Modal/index";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/form/input/InputField";

@@ -3,7 +3,7 @@ import { useUserAuth } from "../../../../src/context/user/userAuthContext";
 import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../../../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
-import AppNavbar from "../../../layout/user/AppNavbar";
+import AppNavbar from "../../../Layout/user/AppNavbar";
 
 // Info icons for address, members, phone
 const InfoIcon: FC<{ type: "location" | "members" | "phone" }> = ({ type }) => {

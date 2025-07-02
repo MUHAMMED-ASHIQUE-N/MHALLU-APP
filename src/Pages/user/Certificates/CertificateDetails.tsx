@@ -1,6 +1,6 @@
 import { useEffect, useState, type FC } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import HeaderBar from "../../../layout/user/HeaderBar";
+import HeaderBar from "../../../Layout/user/HeaderBar";
 import { firestore } from "../../../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import {type  StatusType } from "../../../components/common/user/CertificateCard";
