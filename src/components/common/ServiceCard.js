@@ -1,0 +1,2 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+export const ServiceCard = ({ icon, labelLines, onClick }) => (_jsxs("div", { onClick: onClick, className: "bg-gray-50 rounded-2xl p-6 flex flex-col items-center text-center shadow-lg", children: [_jsx("div", { className: "rounded-lg mb-3", children: _jsx("img", { src: icon, alt: labelLines.join(" "), className: "w-12 h-12" }) }), labelLines.map((label, i) => (_jsx("span", { className: "text-gray-800 font-medium text-sm", children: label }, i)))] }));

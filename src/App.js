@@ -1,0 +1,17 @@
+import { jsx as _jsx } from "react/jsx-runtime";
+// import * as React from 'react';
+// import { RouterProvider } from 'react-router-dom';
+// import router from './Routes/routes';
+// interface IAppProps {
+// }
+// const App: React.FC<IAppProps> = (props) => {
+//   return (
+//     <RouterProvider router={router}/>
+//   )
+// };
+// export default App;
+import { ToastContainer } from 'react-toastify';
+function App() {
+    return (_jsx("div", { children: _jsx(ToastContainer, { position: "top-right", autoClose: 2500, limit: 3, closeOnClick: true, pauseOnHover: true, draggable: true, hideProgressBar: false, toastStyle: { fontSize: '0.9rem', borderRadius: '12px', padding: '12px 16px', width: '250px' } }) }));
+}
+export default App;

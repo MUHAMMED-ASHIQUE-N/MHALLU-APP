@@ -1,0 +1,4 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import chatimg from "../../../../assets/images/avathar.png";
+export const MessageBubble = ({ message, user }) => (_jsxs("div", { className: "flex items-end mb-3 group", children: [_jsx("img", { src: chatimg || user.avatar, alt: user.name, className: "w-8 h-8 rounded-full mr-3 self-start" }), _jsxs("div", { children: [_jsx("div", { className: "rounded-xl dark:bg-gray-900 dark:border-gray-700 border bg-white px-5 py-3 shadow max-w-xs\r\n        transition duration-200 group-hover:scale-[1.02] group-hover:shadow-lg", children: _jsx("div", { className: "text-gray-700 dark:text-gray-300 text-sm", children: message.text }) }), _jsx("div", { className: "text-xs text-gray-400 mt-1 ml-1", children: message.time })] })] }));
+export default MessageBubble;

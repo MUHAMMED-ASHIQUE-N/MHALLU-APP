@@ -1,0 +1,12 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import PaidUserCard from "./PaidUserCard";
+import { IoArrowForwardCircleOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+const PaidUserList = ({ users }) => {
+    const navigate = useNavigate();
+    const toPaymentTable = () => {
+        navigate("/payment-table");
+    };
+    return (_jsxs("div", { className: "flex flex-row items-center gap-24 mb-6 pl-1 ", children: [users.map((user, idx) => (_jsx(PaidUserCard, { ...user }, idx))), _jsx("button", { onClick: toPaymentTable, className: "rounded-full bg-white dark:bg-gray-900 shadow p-2 ml-2 border dark:border-gray-800 transition duration-300 hover:scale-110 hover:border-emerald-500", children: _jsx(IoArrowForwardCircleOutline, { className: "text-3xl text-gray-700 dark:text-gray-300" }) })] }));
+};
+export default PaidUserList;

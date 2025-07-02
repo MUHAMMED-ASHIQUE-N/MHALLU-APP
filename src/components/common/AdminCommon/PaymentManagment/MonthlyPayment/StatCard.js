@@ -1,0 +1,3 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+const StatCard = ({ label, value, icon, iconColor }) => (_jsxs("div", { className: "bg-white dark:bg-gray-900 rounded-lg shadow-md p-6 gap-5 flex flex-col items-center min-w-[420px] border dark:border-gray-800 transition duration-300 hover:scale-105 hover:shadow-lg hover:border-emerald-500", children: [_jsx("span", { className: "text-gray-700 dark:text-gray-300 text-base mb-1", children: label }), _jsx("span", { className: "text-2xl font-semibold mb-3 text-gray-800 dark:text-gray-100", children: value }), _jsx("span", { className: iconColor, children: icon })] }));
+export default StatCard;
