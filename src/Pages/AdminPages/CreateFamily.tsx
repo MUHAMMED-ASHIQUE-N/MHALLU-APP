@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { initSecondaryAuth, firestore } from "../../firebase/firebaseConfig";
 import {
   createUserWithEmailAndPassword,
-  type Auth as FirebaseAuth,
 } from "firebase/auth";
 import {
   collection,
@@ -77,7 +76,6 @@ const CreateFamily: React.FC = () => {
     }
     setLoading(true);
     try {
-      const familiesCol = collection(firestore, "families");
       const familyDocRef = doc(firestore, "families", houseNumber);
       const snap = await getDoc(familyDocRef);
       if (snap.exists()) {

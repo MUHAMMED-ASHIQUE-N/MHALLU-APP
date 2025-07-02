@@ -1,4 +1,4 @@
-import { FC } from "react";
+import {type FC } from "react";
 import CardSvg from "../../../assets/icons/card-svgrepo-com.svg";
 import { useNavigate } from "react-router-dom";
 import MessSvg from "../../../assets/icons/plate-knife-fork-icon.svg";

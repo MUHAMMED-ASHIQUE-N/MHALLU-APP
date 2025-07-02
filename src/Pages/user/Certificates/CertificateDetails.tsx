@@ -4,7 +4,6 @@ import HeaderBar from "../../../Layout/user/HeaderBar";
 import { firestore } from "../../../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import {type  StatusType } from "../../../components/common/user/CertificateCard";
-import Button from "../../../components/ui/button/Button";
 import Loading from "../../../components/common/Loading";
 import { toast } from "react-toastify";
 
@@ -17,23 +16,8 @@ interface CertificateRequest {
   description: string;
 }
 
-const statusLabel: Record<StatusType, string> = {
-  accepted: "Accepted",
-  pending: "Pending",
-  rejected: "Rejected"
-};
 
-const statusStyles: Record<StatusType, string> = {
-  accepted: "bg-emerald-50 text-emerald-700 border-emerald-200",
-  pending: "bg-amber-50 text-amber-700 border-amber-200", 
-  rejected: "bg-red-50 text-red-700 border-red-200"
-};
 
-const statusIcons: Record<StatusType, string> = {
-  accepted: "✓",
-  pending: "⏳",
-  rejected: "✕"
-};
 
 const CertificateDetails: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -77,7 +61,18 @@ const CertificateDetails: FC = () => {
 
   const handleDownload = async () => {
   toast.success("Preparing your download...");
+  setIsDownloading(true);
+  try {
+    // Simulate download process
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // Here you would implement the actual download logic
+    toast.success("Certificate downloaded successfully!");
+  } catch (error) {
+    toast.error("Failed to download certificate. Please try again.");
+  } finally {
+    setIsDownloading(false);
   };
+}
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">

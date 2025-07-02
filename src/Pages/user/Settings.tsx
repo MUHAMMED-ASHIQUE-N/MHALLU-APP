@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppNavbar } from "../../Layout/user/AppNavbar";
 import Button from "../../components/ui/button/Button";

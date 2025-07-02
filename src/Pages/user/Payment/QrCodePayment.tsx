@@ -1,4 +1,4 @@
-import { FC } from "react";
+import {type FC } from "react";
 
 // You can substitute this with your actual QR SVG path or data URI
 import QrImage from "../../../assets/icons/QR_Code_Example.svg";

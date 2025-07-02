@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { type FC } from "react";
 import Bell from "../../assets/icons/bell-svgrepo-com.svg";
 
 export const Header: FC = () => (
