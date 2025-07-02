@@ -29,7 +29,7 @@ const PaymentCard: FC<PaymentCardProps> = ({ icon, title, description, alt, onCl
   </div>
 );
 
-export const PaymentHome: FC = () => {
+ const PaymentHome: FC = () => {
   const navigate = useNavigate();
 
   return (

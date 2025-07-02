@@ -24,7 +24,7 @@ const PaymentOption: FC<{
   </div>
 );
 
-export const MonthlyPayment: FC = () => {
+ const MonthlyPayment: FC = () => {
   const navigate = useNavigate();
 
   return (
