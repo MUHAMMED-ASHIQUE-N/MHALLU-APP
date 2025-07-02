@@ -15,7 +15,7 @@ export const UserHome: FC = () => {
   // }
 
   return (
-    <div className="bg-white min-h-dvh mx-auto container max-w-2xl">
+    <div className="bg-white  mx-auto container max-w-2xl">
       
       <div className="p-4">
         <div className="bg-black rounded-2xl overflow-hidden h-48">

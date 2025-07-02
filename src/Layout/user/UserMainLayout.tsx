@@ -5,7 +5,7 @@ import  AppNavbar  from "./AppNavbar";
 
 const UserMainLayout: FC = () => {
   return (
-    <div>
+    <div className="min-h-dvh flex flex-col bg-gray-50">
       <Header />
       <Outlet />
       <AppNavbar />
