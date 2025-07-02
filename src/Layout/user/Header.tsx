@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import Bell from "../../assets/icons/bell-svgrepo-com.svg";
 
-export const Header: FC = () => (
+ const Header: FC = () => (
   <div className="bg-primary  py-4">
          <div className=" mx-auto container px-5 flex justify-between items-center">
 
@@ -10,3 +10,5 @@ export const Header: FC = () => (
     </div>
   </div>
 );
+
+export default Header;

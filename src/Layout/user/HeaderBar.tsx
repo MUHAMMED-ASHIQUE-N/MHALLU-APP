@@ -24,7 +24,7 @@ const BackButton: FC<{ onClick?: () => void }> = ({ onClick }) => {
   );
 };
 
-export const HeaderBar: FC<HeaderBarProps> = ({ title, onBack, bgClassName = "bg-primary" }) => (
+ const HeaderBar: FC<HeaderBarProps> = ({ title, onBack, bgClassName = "bg-primary" }) => (
   <div className={`w-full px-4 py-4 ${bgClassName}`}>
     <div className="flex items-center justify-between relative">
       <BackButton onClick={onBack} />
