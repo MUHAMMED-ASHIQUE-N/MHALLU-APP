@@ -1,8 +1,8 @@
         import {SidebarProvider,useSidebar } from "../../context/admin/SidebarContext";
 import { Outlet } from "react-router";
-import AppHeader from "../admin/AppHeader";
-import Backdrop from "../admin/Backdrop";
-import AppSidebar from "../admin/AppSidebar";
+import AppHeader from "./AppHeader";
+import Backdrop from "./Backdrop";
+import AppSidebar from "./AppSidebar";
 // import { ThemeProvider } from "../context/ThemeContext";
 
 const LayoutContent: React.FC = () => {

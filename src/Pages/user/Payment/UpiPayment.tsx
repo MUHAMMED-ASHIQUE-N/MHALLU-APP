@@ -1,5 +1,5 @@
 import {type FC } from "react";
-import HeaderBar from "../../../Layout/user/HeaderBar";
+import HeaderBar from "../../../layout/user/HeaderBar";
 
 
 const AmountSummary: FC = () => (

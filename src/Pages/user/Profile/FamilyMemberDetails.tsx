@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { firestore } from "../../../firebase/firebaseConfig";
 import { useUserAuth } from "../../../../src/context/user/userAuthContext";
-import { AppNavbar } from "../../../Layout/user/AppNavbar";
-import HeaderBar from "../../../Layout/user/HeaderBar";
+import { AppNavbar } from "../../../layout/user/AppNavbar";
+import HeaderBar from "../../../layout/user/HeaderBar";
 
 // Define Member interface based on the data structure
 interface Member {

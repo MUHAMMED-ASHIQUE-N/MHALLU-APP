@@ -1,5 +1,5 @@
   import { useEffect, useState, type FC } from "react";
-  import HeaderBar from "../../../Layout/user/HeaderBar";
+  import HeaderBar from "../../../layout/user/HeaderBar";
   import { useUserAuth } from "../../../context/user/userAuthContext";
   import { collection, query, where, onSnapshot, type DocumentData } from "firebase/firestore";
   import { firestore } from "../../../firebase/firebaseConfig";
